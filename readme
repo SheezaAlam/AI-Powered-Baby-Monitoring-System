@@ -1,6 +1,4 @@
 
-
-
 About Project 
 AngelCam is an AI-powered baby monitoring system that uses object detection to identify and track babies in surveillance video footage. If a baby exits a defined safe zone, the system raises an alert. This solution is ideal for busy parents and can be integrated into nanny cams or smart surveillance systems. 
 Abstract 
@@ -85,66 +83,11 @@ model.conf = 0.4 to set confidence threshold
 SAFE_ZONE = (...) defines monitoring region 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Screenshots or UI design 
-
- 
-
  Results and Evaluation 
 Performance Metrics 
 Accuracy: 90% detection in ideal conditions 
 Confidence threshold: 0.4 (balanced sensitivity) 
 Graphs 
-(Add YOLOv5 training loss/accuracy graphs here) 
-Comparison with models 
-Model 
-Accuracy 
-Speed 
-Customization 
-  YOLOv3 
- Medium 
- Medium 
-  Moderate 
-  SSD 
- Medium 
- High 
-  Low 
-  YOLOv5 (AngelCam) 
-  High 
- High 
-  High 
-
  
 Conclusion 
 Summary 
@@ -158,16 +101,6 @@ Can be used in nurseries
 Add-on to smart cameras 
 Integrate with mobile apps for alerts 
  
-Future Work 
-Improvements 
-Add sound or push notification alerts 
-Improve detection with more diverse baby data 
-Scalability Ideas 
-Detect multiple babies 
-Monitor over network or cloud 
-Integration Possibilities 
-Integrate with IoT/smart cameras 
-Use on Raspberry Pi or mobile apps 
  
 Project Code 
 python-mini-projects/AI_Project_Final.ipynb at main · SheezaAlam/python-mini-projects 
