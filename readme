@@ -1,81 +1,83 @@
 
-# 👶 Baby Detection, Tracking & Alert System (YOLOv5 + YouTube Integration)
+👶 Baby Detection, Tracking & Alert System (YOLOv5 + YouTube Integration)
 
----
+📌 Overview
+This project is an AI-powered baby monitoring system built with YOLOv5.
+ It can detect, track, and alert when a baby moves outside a predefined safety zone.
+ The system supports real-time monitoring, local video processing, and YouTube video input.
 
-## 📌 Overview
-This project is an **AI-powered baby monitoring system** built with **YOLOv5**.  
-It can **detect, track, and alert** when a baby moves outside a **predefined safety zone**.  
-The system supports **real-time monitoring, local video processing, and YouTube video input**.
+🚀 Features
+✅ Custom-trained YOLOv5 model for baby detection
 
----
 
-## 🚀 Features
-- ✅ **Custom-trained YOLOv5 model** for baby detection  
-- ✅ **Live tracking & zone-based alerts**  
-- ✅ **YouTube video integration** for remote footage analysis  
-- ✅ **Google Colab compatibility** for quick setup  
-- ✅ **Sound alerts** when baby leaves the safe zone  
+✅ Live tracking & zone-based alerts
 
----
 
-## 📊 Detection Box Colors
-| Color | Meaning |
-|-------|---------|
-| 🟦 Blue | Baby is **inside** the safety zone |
-| 🟥 Red  | Baby is **outside** the safety zone (**Alert!**) |
+✅ YouTube video integration for remote footage analysis
 
----
 
-## 🛠 Tech Stack
-| Tool/Library | Purpose |
-|--------------|---------|
-| **Python 3** | Programming Language |
-| **YOLOv5**   | Object Detection |
-| **PyTorch**  | Deep Learning |
-| **OpenCV**   | Video Processing |
-| **yt-dlp**   | YouTube Video Download |
-| **Pygame**   | Sound Alerts |
+✅ Google Colab compatibility for quick setup
 
----
 
-## ⚙️ Setup & Usage (Google Colab)
+✅ Sound alerts when baby leaves the safe zone
 
-### 1️⃣ Install YOLOv5
-```bash
+
+
+📊 Detection Box Colors
+Color
+Meaning
+🟦 Blue
+Baby is inside the safety zone
+🟥 Red
+Baby is outside the safety zone (Alert!)
+
+
+🛠 Tech Stack
+Tool/Library
+Purpose
+Python 3
+Programming Language
+YOLOv5
+Object Detection
+PyTorch
+Deep Learning
+OpenCV
+Video Processing
+yt-dlp
+YouTube Video Download
+Pygame
+Sound Alerts
+
+
+⚙️ Setup & Usage (Google Colab)
+1️⃣ Install YOLOv5
 !git clone https://github.com/ultralytics/yolov5
 %cd yolov5
 !pip install -r requirements.txt
-````
 
-### 2️⃣ Download YouTube Video
-
-```python
+2️⃣ Download YouTube Video
 from yt_dlp import YoutubeDL
 
 video_url = "YOUR_YOUTUBE_VIDEO_URL"
 ydl_opts = {"format": "best[ext=mp4]", "outtmpl": "input_video.mp4"}
 with YoutubeDL(ydl_opts) as ydl:
     ydl.download([video_url])
-```
 
-### 3️⃣ Run Detection with Alerts
-
-```bash
+3️⃣ Run Detection with Alerts
 python detect_and_alert.py --weights best.pt --source input_video.mp4
-```
 
----
 
-## 🔄 How It Works
+🔄 How It Works
+Detect – YOLOv5 identifies the baby in the frame.
 
-1. **Detect** – YOLOv5 identifies the baby in the frame.
-2. **Track** – Object tracking keeps the baby in view across frames.
-3. **Alert** – If the baby leaves the predefined safety zone, a sound alert is triggered.
 
----
+Track – Object tracking keeps the baby in view across frames.
 
-## 📜 License
 
-This project is released under the **MIT License**.
+Alert – If the baby leaves the predefined safety zone, a sound alert is triggered.
+
+
+
+📜 License
+This project is released under the MIT License.
 
