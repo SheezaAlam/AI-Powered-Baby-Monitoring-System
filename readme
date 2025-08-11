@@ -1,5 +1,5 @@
 
-# **👶 Baby Detection, Tracking & Alert System (YOLOv5 + YouTube Integration)**
+# 👶 **Baby Detection, Tracking & Alert System** (YOLOv5 + YouTube Integration)
 
 <p align="center">
   <img src="docs/banner.jpg" alt="Baby Detection Banner" width="700">
@@ -9,53 +9,54 @@
 
 ## 📌 **Overview**
 
-This project uses **YOLOv5** to detect, track, and alert when a baby moves outside a **predefined safety zone**.
-It supports:
+This project uses **YOLOv5** to **detect, track, and alert** when a baby moves outside a **predefined safety zone**.
+
+**Supports:**
 
 * 🎥 **Real-time webcam monitoring**
 * 📂 **Custom/local videos**
 * 📺 **YouTube videos**
 
-**Goal**: Create a smart monitoring system for nurseries or research projects.
+**Goal** → Build a **smart baby monitoring system** for nurseries, parents, or research purposes.
 
 ---
 
-## 🚀 Features
+## 🚀 **Features**
 
-* ✅ **Baby Detection** — Trained YOLOv5 model to detect babies in frames.
-* ✅ **Tracking** — Continuous tracking with bounding boxes.
-* ✅ **Safety Zone** — Virtual zone to ensure the baby stays safe.
-* ✅ **Alert System** — Visual warnings for unsafe positions.
-* ✅ **YouTube Integration** — Process videos directly from YouTube links.
-* ✅ **Colab-Friendly** — Runs without local GPU.
+* ✅ **Baby Detection** — Custom-trained YOLOv5 model.
+* ✅ **Tracking** — Continuous frame-by-frame tracking.
+* ✅ **Safety Zone** — Define a safe area to monitor.
+* ✅ **Alert System** — Visual alerts when unsafe.
+* ✅ **YouTube Integration** — Direct video processing from YouTube.
+* ✅ **Google Colab-Friendly** — No need for a local GPU.
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 **Tech Stack**
 
 | Tool/Library | Purpose                   |
 | ------------ | ------------------------- |
-| **Python 3** | Main programming language |
+| **Python 3** | Programming language      |
 | **YOLOv5**   | Object detection          |
-| **PyTorch**  | Deep learning framework   |
-| **OpenCV**   | Video & image processing  |
-| **yt-dlp**   | YouTube video downloading |
-| **Pygame**   | Sound alerts (local runs) |
+| **PyTorch**  | Deep learning             |
+| **OpenCV**   | Video processing          |
+| **yt-dlp**   | YouTube download          |
+| **Pygame**   | Sound alerts (local mode) |
 
 ---
 
-## 📂 Dataset
+## 📂 **Dataset**
 
-* **Source**: Custom dataset via [Roboflow](https://roboflow.com)
-* **Size**: 2,000+ annotated baby images
-* **Format**: YOLO TXT labels
-* **Classes**:
+* **Source:** Custom dataset via [Roboflow](https://roboflow.com)
+* **Size:** \~2,000 annotated baby images
+* **Format:** YOLO TXT labels
+* **Classes:**
 
 ```
 0 baby
 ```
 
-Example Training Images:
+**Example Training Images:**
 
 <p align="center">
   <img src="docs/sample_training.jpg" alt="Training Example" width="500">
@@ -63,9 +64,9 @@ Example Training Images:
 
 ---
 
-## ⚙️ Setup & Usage (Google Colab)
+## ⚙️ **Setup & Usage** (Google Colab)
 
-### 1️⃣ Clone YOLOv5
+### **1️⃣ Clone YOLOv5**
 
 ```bash
 !git clone https://github.com/ultralytics/yolov5
@@ -73,30 +74,34 @@ Example Training Images:
 !pip install -r requirements.txt
 ```
 
-### 2️⃣ Download Dataset
+### **2️⃣ Download Dataset**
 
 ```bash
 curl -L "YOUR_ROBOFLOW_DATASET_LINK" > roboflow.zip
 unzip roboflow.zip
 ```
 
-### 3️⃣ Train Model
+### **3️⃣ Train Model**
 
 ```bash
 !python train.py --img 640 --batch 16 --epochs 50 --data data.yaml --weights yolov5s.pt
 ```
 
-### 4️⃣ Download YouTube Video
+### **4️⃣ Download YouTube Video**
 
 ```python
 from yt_dlp import YoutubeDL
+
 video_url = "https://www.youtube.com/watch?v=EISMLMybScA&t=4s"
-ydl_opts = {"format": "best[ext=mp4]", "outtmpl": "/content/baby_video.mp4"}
+ydl_opts = {
+    "format": "best[ext=mp4]",
+    "outtmpl": "/content/baby_video.mp4"
+}
 with YoutubeDL(ydl_opts) as ydl:
     ydl.download([video_url])
 ```
 
-### 5️⃣ Run Detection + Alert
+### **5️⃣ Run Detection + Alert**
 
 ```bash
 python detect_and_alert.py --weights runs/train/exp/weights/best.pt --source baby_video.mp4
@@ -104,16 +109,16 @@ python detect_and_alert.py --weights runs/train/exp/weights/best.pt --source bab
 
 ---
 
-## 📊 Detection Box Colors
+## 📊 **Detection Box Colors**
 
-| Color           | Meaning                          |
-| --------------- | -------------------------------- |
-| 🟦 **Blue Box** | Baby inside safety zone          |
-| 🟥 **Red Box**  | Baby outside safety zone (alert) |
+| Color           | Meaning                               |
+| --------------- | ------------------------------------- |
+| 🟦 **Blue Box** | Baby inside safety zone               |
+| 🟥 **Red Box**  | Baby outside safety zone (**Alert!**) |
 
 ---
 
-## 🔄 Workflow Diagram
+## 🔄 **Workflow Diagram**
 
 <p align="center">
   <img src="docs/flowchart.png" alt="Workflow Diagram" width="650">
@@ -121,9 +126,9 @@ python detect_and_alert.py --weights runs/train/exp/weights/best.pt --source bab
 
 ---
 
-## 📽 Demo
+## 📽 **Demo**
 
-🔗 **Demo Video**: [Watch Here](https://youtu.be/your_demo_link)
+🔗 **Demo Video:** [Watch Here](https://youtu.be/your_demo_link)
 
 <p align="center">
   <img src="docs/demo.gif" alt="Demo GIF" width="500">
@@ -131,16 +136,16 @@ python detect_and_alert.py --weights runs/train/exp/weights/best.pt --source bab
 
 ---
 
-## 📌 Future Enhancements
+## 📌 **Future Enhancements**
 
-* 🎙 Add real-time sound alerts in Colab
-* 📱 Develop mobile app for live monitoring
-* 🧍 Add baby pose/activity recognition
-* 🌐 Cloud-based alert notifications
+* 🎙 Real-time audio alerts in Colab
+* 📱 Mobile app integration
+* 🧍 Pose/activity recognition
+* 🌐 Cloud-based notifications
 
 ---
 
-## 📜 License
+## 📜 **License**
 
-This project is licensed under the **MIT License**.
+Licensed under the **MIT License**.
 
