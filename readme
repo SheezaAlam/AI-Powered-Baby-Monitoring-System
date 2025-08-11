@@ -1,5 +1,5 @@
 
-# 👶 Baby Detection, Tracking & Alert System (YOLOv5 + YouTube Integration)
+# **👶 Baby Detection, Tracking & Alert System (YOLOv5 + YouTube Integration)**
 
 <p align="center">
   <img src="docs/banner.jpg" alt="Baby Detection Banner" width="700">
@@ -7,7 +7,7 @@
 
 ---
 
-## 📌 Overview
+## 📌 **Overview**
 
 This project uses **YOLOv5** to detect, track, and alert when a baby moves outside a **predefined safety zone**.
 It supports:
