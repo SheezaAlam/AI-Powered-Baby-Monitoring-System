@@ -1,27 +1,29 @@
 
 # 👶 Baby Detection, Tracking & Alert System (YOLOv5 + YouTube Integration)
 
-<p align="center">
-  <img src="https://via.placeholder.com/800x250.png?text=Baby+Detection+%26+Alert+System" alt="Baby Detection Banner" width="700">
-</p>
-
 ---
 
 ## 📌 Overview
-This project uses **YOLOv5** to **detect, track, and alert** when a baby moves outside a **predefined safety zone**.
-
-### Supports:
-- 🎥 **Real-time webcam monitoring**  
-- 📂 **Local video file analysis**  
-- 📺 **YouTube video integration**  
+This project is an **AI-powered baby monitoring system** built with **YOLOv5**.  
+It can **detect, track, and alert** when a baby moves outside a **predefined safety zone**.  
+The system supports **real-time monitoring, local video processing, and YouTube video input**.
 
 ---
 
 ## 🚀 Features
-✅ **Custom-trained YOLOv5 model for baby detection**  
-✅ **Tracking & real-time safety zone alerts**  
-✅ **YouTube video download & processing**  
-✅ **Google Colab friendly**  
+- ✅ **Custom-trained YOLOv5 model** for baby detection  
+- ✅ **Live tracking & zone-based alerts**  
+- ✅ **YouTube video integration** for remote footage analysis  
+- ✅ **Google Colab compatibility** for quick setup  
+- ✅ **Sound alerts** when baby leaves the safe zone  
+
+---
+
+## 📊 Detection Box Colors
+| Color | Meaning |
+|-------|---------|
+| 🟦 Blue | Baby is **inside** the safety zone |
+| 🟥 Red  | Baby is **outside** the safety zone (**Alert!**) |
 
 ---
 
@@ -32,14 +34,14 @@ This project uses **YOLOv5** to **detect, track, and alert** when a baby moves o
 | **YOLOv5**   | Object Detection |
 | **PyTorch**  | Deep Learning |
 | **OpenCV**   | Video Processing |
-| **yt-dlp**   | YouTube Download |
+| **yt-dlp**   | YouTube Video Download |
 | **Pygame**   | Sound Alerts |
 
 ---
 
 ## ⚙️ Setup & Usage (Google Colab)
 
-### 1️⃣ Clone YOLOv5
+### 1️⃣ Install YOLOv5
 ```bash
 !git clone https://github.com/ultralytics/yolov5
 %cd yolov5
@@ -51,43 +53,29 @@ This project uses **YOLOv5** to **detect, track, and alert** when a baby moves o
 ```python
 from yt_dlp import YoutubeDL
 
-video_url = "https://www.youtube.com/watch?v=EISMLMybScA&t=4s"
-ydl_opts = {"format": "best[ext=mp4]", "outtmpl": "baby_video.mp4"}
+video_url = "YOUR_YOUTUBE_VIDEO_URL"
+ydl_opts = {"format": "best[ext=mp4]", "outtmpl": "input_video.mp4"}
 with YoutubeDL(ydl_opts) as ydl:
     ydl.download([video_url])
 ```
 
-### 3️⃣ Run Detection + Alert
+### 3️⃣ Run Detection with Alerts
 
 ```bash
-python detect_and_alert.py --weights best.pt --source baby_video.mp4
+python detect_and_alert.py --weights best.pt --source input_video.mp4
 ```
 
 ---
 
-## 📊 Detection Box Colors
+## 🔄 How It Works
 
-| Color   | Meaning                               |
-| ------- | ------------------------------------- |
-| 🟦 Blue | Baby inside safety zone               |
-| 🟥 Red  | Baby outside safety zone (**Alert!**) |
-
----
-
-## 📽 Demo
-
-![Demo GIF](https://via.placeholder.com/600x300.gif?text=Demo+Preview+Coming+Soon)
-
----
-
-## 🔄 Workflow
-
-![Workflow](https://via.placeholder.com/600x400.png?text=Workflow+Diagram+Coming+Soon)
+1. **Detect** – YOLOv5 identifies the baby in the frame.
+2. **Track** – Object tracking keeps the baby in view across frames.
+3. **Alert** – If the baby leaves the predefined safety zone, a sound alert is triggered.
 
 ---
 
 ## 📜 License
 
-MIT License
+This project is released under the **MIT License**.
 
-`
