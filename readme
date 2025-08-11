@@ -1,220 +1,146 @@
 
-# AngelCam: AI-Powered Baby Monitoring System
+# 👶 Baby Detection, Tracking & Alert System (YOLOv5 + YouTube Integration)
 
-## About Project
-
-AngelCam is an AI-powered baby monitoring system that uses object detection to identify and track babies in surveillance video footage. If a baby exits a defined safe zone, the system raises an alert. This solution is ideal for busy parents and can be integrated into nanny cams or smart surveillance systems.
-
----
-
-## Abstract
-
-AngelCam is an AI-based object detection and alert system aimed at monitoring babies in real-time through surveillance feeds. The goal is to reduce accidents by alerting parents or caretakers when a baby moves out of a predefined safe zone. The system is trained using a custom-labeled dataset from Roboflow and employs YOLOv5 for baby detection. After detecting a baby in video frames, the system continuously tracks its position and displays alerts if it crosses the designated boundary. With OpenCV and Python integration, AngelCam outputs alert-enabled videos. This project can be extended to integrate audio alerts and smart home compatibility.
+<p align="center">
+  <img src="docs/banner.jpg" alt="Baby Detection Banner" width="700">
+</p>
 
 ---
 
-## Introduction
+## 📌 Overview
 
-### Background / Motivation
+This project uses **YOLOv5** to detect, track, and alert when a baby moves outside a **predefined safety zone**.
+It supports:
 
-Busy parents often leave babies unattended in nurseries where they may wake up and crawl out of their crib, leading to injuries. A smart surveillance system that can monitor baby movement in real-time can prevent such incidents.
+* 🎥 **Real-time webcam monitoring**
+* 📂 **Custom/local videos**
+* 📺 **YouTube videos**
 
-### Problem Statement
-
-* Detect and track a baby in real-time video.
-* Trigger an alert if the baby moves outside a predefined safe area.
-
-### Objectives
-
-* Develop an AI system capable of detecting and tracking babies in video streams.
-* Alert caretakers if the baby exits a designated area.
-
-### Scope of the Project
-
-* Focuses on object detection (YOLOv5) to recognize babies in surveillance videos.
-* Includes real-time tracking and zone-based alert mechanisms.
-* Hardware integration is not part of this scope but can be added later.
-
-### Significance
-
-* Prevent baby injuries due to unattended movement.
-* Enable intelligent nursery surveillance.
-* Provide an open-source solution for developers.
-* Improve safety in smart homes.
+**Goal**: Create a smart monitoring system for nurseries or research projects.
 
 ---
 
-## Literature Review
+## 🚀 Features
 
-| Existing System        | Limitation        |
-| ---------------------- | ----------------- |
-| Traditional Cams       | No AI detection   |
-| Basic Motion Detection | High false alarms |
-| Expensive AI systems   | Not open source   |
-
-* Redmon & Farhadi (2018) - YOLOv3: Real-time object detection foundation.
-* Bochkovskiy et al. (2020) - YOLOv4: Optimized speed and accuracy.
-* Redmon et al. (2016) - Original YOLO algorithm.
-* Wang et al. (2019) - Dynamic video object detection.
-* Chen et al. (2018) - Multi-object tracking with neural networks.
+* ✅ **Baby Detection** — Trained YOLOv5 model to detect babies in frames.
+* ✅ **Tracking** — Continuous tracking with bounding boxes.
+* ✅ **Safety Zone** — Virtual zone to ensure the baby stays safe.
+* ✅ **Alert System** — Visual warnings for unsafe positions.
+* ✅ **YouTube Integration** — Process videos directly from YouTube links.
+* ✅ **Colab-Friendly** — Runs without local GPU.
 
 ---
 
-## Methodology / Proposed System
+## 🛠 Tech Stack
 
-### Algorithm / Model
+| Tool/Library | Purpose                   |
+| ------------ | ------------------------- |
+| **Python 3** | Main programming language |
+| **YOLOv5**   | Object detection          |
+| **PyTorch**  | Deep learning framework   |
+| **OpenCV**   | Video & image processing  |
+| **yt-dlp**   | YouTube video downloading |
+| **Pygame**   | Sound alerts (local runs) |
 
-* YOLOv5 for real-time object detection due to speed and accuracy.
+---
 
-### Dataset Description
+## 📂 Dataset
 
-* Custom baby detection dataset from Roboflow ([https://universe.roboflow.com](https://universe.roboflow.com))
-* 1 class: `baby`
-* Labeled images for training and validation
-
-### Data Preprocessing
-
-* Dataset downloaded and unzipped.
-* YAML config created for training.
-* Image normalization and resizing.
-
-### Model Architecture
+* **Source**: Custom dataset via [Roboflow](https://roboflow.com)
+* **Size**: 2,000+ annotated baby images
+* **Format**: YOLO TXT labels
+* **Classes**:
 
 ```
-Input video → YOLOv5 Detection → Safe Zone Check → Alert Display → Output Video
+0 baby
 ```
 
-### Tools and Technologies
+Example Training Images:
 
-* Google Colab (training)
-* Python 3.x
-* OpenCV
-* Ultralytics YOLOv5
+<p align="center">
+  <img src="docs/sample_training.jpg" alt="Training Example" width="500">
+</p>
 
 ---
 
-## Implementation
+## ⚙️ Setup & Usage (Google Colab)
 
-### Workflow
+### 1️⃣ Clone YOLOv5
 
-1. Install dependencies.
-2. Download dataset from Roboflow.
-3. Train YOLOv5 model.
-4. Convert training images to video.
-5. Detect baby in video using trained model.
-6. Check if baby is inside the safe zone.
-7. Add alert on frames if outside.
-8. Save final video with alerts.
+```bash
+!git clone https://github.com/ultralytics/yolov5
+%cd yolov5
+!pip install -r requirements.txt
+```
 
-### Code Structure / Modules
+### 2️⃣ Download Dataset
 
-* `train.py`: YOLOv5 training script.
-* `video_generator.py`: Converts images to video.
-* `alert_system.py`: Applies detection and alert logic.
+```bash
+curl -L "YOUR_ROBOFLOW_DATASET_LINK" > roboflow.zip
+unzip roboflow.zip
+```
 
-### Key Functions / Pseudocode
+### 3️⃣ Train Model
+
+```bash
+!python train.py --img 640 --batch 16 --epochs 50 --data data.yaml --weights yolov5s.pt
+```
+
+### 4️⃣ Download YouTube Video
 
 ```python
-model = torch.hub.load('ultralytics/yolov5', 'custom', path='runs/train/exp/weights/best.pt')
-cv2.rectangle(frame, top_left, bottom_right, color, thickness)  # Draw safe zone
-model.conf = 0.4  # Confidence threshold
-SAFE_ZONE = ((x1, y1), (x2, y2))  # Monitoring region
+from yt_dlp import YoutubeDL
+video_url = "https://www.youtube.com/watch?v=EISMLMybScA&t=4s"
+ydl_opts = {"format": "best[ext=mp4]", "outtmpl": "/content/baby_video.mp4"}
+with YoutubeDL(ydl_opts) as ydl:
+    ydl.download([video_url])
+```
+
+### 5️⃣ Run Detection + Alert
+
+```bash
+python detect_and_alert.py --weights runs/train/exp/weights/best.pt --source baby_video.mp4
 ```
 
 ---
 
-## Results and Evaluation
+## 📊 Detection Box Colors
 
-* **Accuracy:** \~90% detection in ideal conditions.
-* **Confidence threshold:** 0.4 (balanced sensitivity).
-
-Graphs and performance evaluations available in project notebooks.
-
----
-
-## Conclusion
-
-### Summary
-
-AngelCam successfully detects babies in video frames and raises alerts when they move outside a predefined zone. It leverages YOLOv5 and OpenCV for real-time object detection and alerting.
-
-### Achievements
-
-* Trained custom baby detection model.
-* Implemented real-time video detection.
-* Created visual alert mechanisms.
-
-### Real-world Applications
-
-* Nurseries and daycare centers.
-* Add-on to nanny cams and smart surveillance.
-* Integration with mobile apps for remote alerts.
+| Color           | Meaning                          |
+| --------------- | -------------------------------- |
+| 🟦 **Blue Box** | Baby inside safety zone          |
+| 🟥 **Red Box**  | Baby outside safety zone (alert) |
 
 ---
 
-## Project Code
+## 🔄 Workflow Diagram
 
-You can find the full code and notebooks in this repository:
-`python-mini-projects/AI_Project_Final.ipynb` at [SheezaAlam/python-mini-projects](https://github.com/SheezaAlam/python-mini-projects)
+<p align="center">
+  <img src="docs/flowchart.png" alt="Workflow Diagram" width="650">
+</p>
 
 ---
 
-## References
+## 📽 Demo
 
-* Redmon, J., & Farhadi, A. (2018). YOLOv3: An Incremental Improvement.
-* Bochkovskiy, A., Wang, C., & Liao, H. Y. M. (2020). YOLOv4: Optimal Speed and Accuracy of Object Detection.
-* Wang, X., et al. (2019). Deep Learning for Video Object Detection.
-* Chen, Y., Li, H., & Xiao, J. (2018). Multi-Object Tracking with Neural Networks.
-* Roboflow Dataset. Retrieved from [https://universe.roboflow.com](https://universe.roboflow.com)
-* Ultralytics YOLOv5 GitHub. [https://github.com/ultralytics/yolov5](https://github.com/ultralytics/yolov5)
+🔗 **Demo Video**: [Watch Here](https://youtu.be/your_demo_link)
 
-#AI
+<p align="center">
+  <img src="docs/demo.gif" alt="Demo GIF" width="500">
+</p>
 
-#MachineLearning
+---
 
-#DeepLearning
+## 📌 Future Enhancements
 
-#ComputerVision
+* 🎙 Add real-time sound alerts in Colab
+* 📱 Develop mobile app for live monitoring
+* 🧍 Add baby pose/activity recognition
+* 🌐 Cloud-based alert notifications
 
-#ObjectDetection
+---
 
-#OpenCV
+## 📜 License
 
-#Python
-
-#BabyMonitor
-
-#SmartBabyMonitor
-
-#BabySafety
-
-#ChildSafety
-
-#ParentingTech
-
-#NannyCam
-
-#SmartHome
-
-#IoT 
-
-#YOLOv5
-
-#Roboflow
-
-#VideoAnalytics
-
-#RealTimeDetection
-
-#AIForGood
-
-#OpenSource
-
-#TechForGood
-
-#Innovation
-
-#ParentingTips
-
-#SmartDevices
+This project is licensed under the **MIT License**.
 
