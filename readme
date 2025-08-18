@@ -1,4 +1,14 @@
- ## 📖 Overview  
+
+# 👶 AngelCam – AI-Powered Baby Monitoring System  
+
+![Python](https://img.shields.io/badge/Python-3.9+-blue?logo=python)  
+![YOLOv5](https://img.shields.io/badge/YOLOv5-Object%20Detection-green?logo=github)  
+![Roboflow](https://img.shields.io/badge/Dataset-Roboflow-orange)  
+[![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)  
+
+---
+
+## ** 📖 Overview **  
 **AngelCam** is an AI-powered baby monitoring system that uses **YOLOv5 object detection** to identify and track babies in real-time.  
 If a baby exits a **user-defined safety zone**, the system immediately raises an alert.  
 
@@ -7,13 +17,7 @@ This solution is ideal for:
 - 📹 Integration into nanny cams or smart surveillance systems.  
 - 👶 AI-powered safety applications.  
 
-![Python](https://img.shields.io/badge/Python-3.9-blue?logo=python)
-![YOLOv5](https://img.shields.io/badge/YOLOv5-Object%20Detection-red?logo=yolo)
-![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green?logo=opencv)
-[![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/SheezaAlam/baby-monitoring-yolov5?style=social)](https://github.com/SheezaAlam/baby-monitoring-yolov5/stargazers)
-
-
+---
 
 ## ✨ Features  
 - ✅ Real-time baby detection using YOLOv5.  
@@ -53,6 +57,7 @@ pip install -r requirements.txt
 python detect.py --source test_videos/baby.mp4 --weights best.pt --conf 0.4
 ```
 
+> Replace `baby.mp4` with your video feed or webcam (`--source 0`).
 
 ---
 
@@ -65,6 +70,11 @@ python detect.py --source test_videos/baby.mp4 --weights best.pt --conf 0.4
 
 ---
 
+## 📸 Screenshots
+
+*(Add screenshots/GIFs here showing detection and alert system in action.)*
+
+---
 
 ## 🔮 Future Enhancements
 
@@ -78,5 +88,14 @@ python detect.py --source test_videos/baby.mp4 --weights best.pt --conf 0.4
 
 This project is licensed under the [MIT License](LICENSE).
 
+---
 
+👩‍💻 Developed with ❤️ by **[Sheeza Alam](https://github.com/SheezaAlam)**
 
+```
+
+---
+
+👉 This makes your project **recruiter-ready**: structured, professional, and easy to understand.  
+Would you like me to also **add a flow diagram (system architecture)** so it looks even more polished for GitHub?
+```
