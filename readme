@@ -1,15 +1,4 @@
-
-````markdown
-# 👶 AngelCam – AI-Powered Baby Monitoring System  
-
-![Python](https://img.shields.io/badge/Python-3.9+-blue?logo=python)  
-![YOLOv5](https://img.shields.io/badge/YOLOv5-Object%20Detection-green?logo=github)  
-![Roboflow](https://img.shields.io/badge/Dataset-Roboflow-orange)  
-[![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)  
-
----
-
-## 📖 Overview  
+ ## 📖 Overview  
 **AngelCam** is an AI-powered baby monitoring system that uses **YOLOv5 object detection** to identify and track babies in real-time.  
 If a baby exits a **user-defined safety zone**, the system immediately raises an alert.  
 
@@ -18,7 +7,13 @@ This solution is ideal for:
 - 📹 Integration into nanny cams or smart surveillance systems.  
 - 👶 AI-powered safety applications.  
 
----
+![Python](https://img.shields.io/badge/Python-3.9-blue?logo=python)
+![YOLOv5](https://img.shields.io/badge/YOLOv5-Object%20Detection-red?logo=yolo)
+![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green?logo=opencv)
+[![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/SheezaAlam/baby-monitoring-yolov5?style=social)](https://github.com/SheezaAlam/baby-monitoring-yolov5/stargazers)
+
+
 
 ## ✨ Features  
 - ✅ Real-time baby detection using YOLOv5.  
