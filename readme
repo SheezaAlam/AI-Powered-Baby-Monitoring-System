@@ -1,101 +1,49 @@
-
 # 👶 AngelCam – AI-Powered Baby Monitoring System  
 
-![Python](https://img.shields.io/badge/Python-3.9+-blue?logo=python)  
-![YOLOv5](https://img.shields.io/badge/YOLOv5-Object%20Detection-green?logo=github)  
-![Roboflow](https://img.shields.io/badge/Dataset-Roboflow-orange)  
+![Python](https://img.shields.io/badge/Python-3.9+-blue?logo=python)
+![YOLOv5](https://img.shields.io/badge/YOLOv5-Object%20Detection-green?logo=github)
+![Roboflow](https://img.shields.io/badge/Dataset-Roboflow-orange)
 [![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)  
 
 ---
 
-## ** 📖 Overview **  
-**AngelCam** is an AI-powered baby monitoring system that uses **YOLOv5 object detection** to identify and track babies in real-time.  
-If a baby exits a **user-defined safety zone**, the system immediately raises an alert.  
-
-This solution is ideal for:  
-- 🍼 Busy parents who want peace of mind.  
-- 📹 Integration into nanny cams or smart surveillance systems.  
-- 👶 AI-powered safety applications.  
+## 📑 Overview  
+AngelCam is an **AI-powered baby monitoring system** that uses object detection to identify and track babies in surveillance video footage. If a baby exits a defined safe zone, the system **raises an alert**. This solution is ideal for busy parents and can be integrated into nanny cams or smart surveillance systems.  
 
 ---
 
-## ✨ Features  
-- ✅ Real-time baby detection using YOLOv5.  
-- ✅ Tracks movement inside a **custom safe zone**.  
-- ✅ Alerts if the baby exits the zone.  
-- ✅ Built with **Google Colab** for easy training & testing.  
-- ✅ Dataset powered by **Roboflow**.  
+## 🎯 Features  
+- 🍼 Real-time **baby detection & tracking**  
+- 🖼️ Define a **custom safe zone**  
+- 🚨 Alert if baby moves outside the safe zone  
+- 📊 Detection history & monitoring logs  
 
 ---
 
-## 🛠️ Tech Stack  
-- **Language:** Python  
-- **Framework:** PyTorch  
-- **Model:** YOLOv5 (custom-trained)  
-- **Dataset:** [Roboflow Baby Detection Dataset](https://universe.roboflow.com/vtar/baby-object-detection-final)  
-- **Environment:** Google Colab  
+## ⚙️ Tech Stack  
+- **Programming Language**: Python  
+- **Model**: YOLOv5 (Object Detection)  
+- **Dataset**: Baby Detection (Roboflow)  
+- **Environment**: Google Colab (GPU Enabled)  
 
 ---
 
-## 🚀 Getting Started  
-
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/SheezaAlam/baby-monitoring-ai.git
-cd baby-monitoring-ai
-````
-
-### 2️⃣ Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3️⃣ Run Detection
-
-```bash
-python detect.py --source test_videos/baby.mp4 --weights best.pt --conf 0.4
-```
-
-> Replace `baby.mp4` with your video feed or webcam (`--source 0`).
+## 🚀 How It Works  
+1. Load the trained **YOLOv5 model**  
+2. Stream video from webcam / surveillance feed  
+3. Detect and track the baby inside the frame  
+4. If the baby exits the **safe zone**, an **alert is triggered**  
 
 ---
 
-## 📊 Project Workflow
-
-1. **Data Collection** → Baby dataset prepared on Roboflow.
-2. **Model Training** → YOLOv5 custom training in Google Colab.
-3. **Real-Time Monitoring** → Detect + track baby in a defined safe area.
-4. **Alerts** → Notify if the baby exits the safety zone.
+## 📌 Use Cases  
+- 👨‍👩‍👧 Parents monitoring babies at home  
+- 🏥 Hospitals & daycare centers  
+- 📹 Smart nanny cams with AI features  
 
 ---
 
-## 📸 Screenshots
-
-*(Add screenshots/GIFs here showing detection and alert system in action.)*
-
----
-
-## 🔮 Future Enhancements
-
-* 📱 Mobile app integration.
-* 🎵 Sound alerts (beep/alarm).
-* 🌐 Cloud-based monitoring dashboard.
+## 📜 License  
+This project is licensed under the **MIT License**.  
 
 ---
-
-## 📜 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-👩‍💻 Developed with ❤️ by **[Sheeza Alam](https://github.com/SheezaAlam)**
-
-```
-
----
-
-👉 This makes your project **recruiter-ready**: structured, professional, and easy to understand.  
-Would you like me to also **add a flow diagram (system architecture)** so it looks even more polished for GitHub?
-```
