@@ -1,83 +1,87 @@
 
-👶 Baby Detection, Tracking & Alert System (YOLOv5 + YouTube Integration)
+````markdown
+# 👶 AngelCam – AI-Powered Baby Monitoring System  
 
-📌 Overview
-This project is an AI-powered baby monitoring system built with YOLOv5.
- It can detect, track, and alert when a baby moves outside a predefined safety zone.
- The system supports real-time monitoring, local video processing, and YouTube video input.
+![Python](https://img.shields.io/badge/Python-3.9+-blue?logo=python)  
+![YOLOv5](https://img.shields.io/badge/YOLOv5-Object%20Detection-green?logo=github)  
+![Roboflow](https://img.shields.io/badge/Dataset-Roboflow-orange)  
+[![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)  
 
-🚀 Features
-✅ Custom-trained YOLOv5 model for baby detection
+---
 
+## 📖 Overview  
+**AngelCam** is an AI-powered baby monitoring system that uses **YOLOv5 object detection** to identify and track babies in real-time.  
+If a baby exits a **user-defined safety zone**, the system immediately raises an alert.  
 
-✅ Live tracking & zone-based alerts
+This solution is ideal for:  
+- 🍼 Busy parents who want peace of mind.  
+- 📹 Integration into nanny cams or smart surveillance systems.  
+- 👶 AI-powered safety applications.  
 
+---
 
-✅ YouTube video integration for remote footage analysis
+## ✨ Features  
+- ✅ Real-time baby detection using YOLOv5.  
+- ✅ Tracks movement inside a **custom safe zone**.  
+- ✅ Alerts if the baby exits the zone.  
+- ✅ Built with **Google Colab** for easy training & testing.  
+- ✅ Dataset powered by **Roboflow**.  
 
+---
 
-✅ Google Colab compatibility for quick setup
+## 🛠️ Tech Stack  
+- **Language:** Python  
+- **Framework:** PyTorch  
+- **Model:** YOLOv5 (custom-trained)  
+- **Dataset:** [Roboflow Baby Detection Dataset](https://universe.roboflow.com/vtar/baby-object-detection-final)  
+- **Environment:** Google Colab  
 
+---
 
-✅ Sound alerts when baby leaves the safe zone
+## 🚀 Getting Started  
 
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/SheezaAlam/baby-monitoring-ai.git
+cd baby-monitoring-ai
+````
 
+### 2️⃣ Install Dependencies
 
-📊 Detection Box Colors
-Color
-Meaning
-🟦 Blue
-Baby is inside the safety zone
-🟥 Red
-Baby is outside the safety zone (Alert!)
+```bash
+pip install -r requirements.txt
+```
 
+### 3️⃣ Run Detection
 
-🛠 Tech Stack
-Tool/Library
-Purpose
-Python 3
-Programming Language
-YOLOv5
-Object Detection
-PyTorch
-Deep Learning
-OpenCV
-Video Processing
-yt-dlp
-YouTube Video Download
-Pygame
-Sound Alerts
-
-
-⚙️ Setup & Usage (Google Colab)
-1️⃣ Install YOLOv5
-!git clone https://github.com/ultralytics/yolov5
-%cd yolov5
-!pip install -r requirements.txt
-
-2️⃣ Download YouTube Video
-from yt_dlp import YoutubeDL
-
-video_url = "YOUR_YOUTUBE_VIDEO_URL"
-ydl_opts = {"format": "best[ext=mp4]", "outtmpl": "input_video.mp4"}
-with YoutubeDL(ydl_opts) as ydl:
-    ydl.download([video_url])
-
-3️⃣ Run Detection with Alerts
-python detect_and_alert.py --weights best.pt --source input_video.mp4
+```bash
+python detect.py --source test_videos/baby.mp4 --weights best.pt --conf 0.4
+```
 
 
-🔄 How It Works
-Detect – YOLOv5 identifies the baby in the frame.
+---
+
+## 📊 Project Workflow
+
+1. **Data Collection** → Baby dataset prepared on Roboflow.
+2. **Model Training** → YOLOv5 custom training in Google Colab.
+3. **Real-Time Monitoring** → Detect + track baby in a defined safe area.
+4. **Alerts** → Notify if the baby exits the safety zone.
+
+---
 
 
-Track – Object tracking keeps the baby in view across frames.
+## 🔮 Future Enhancements
+
+* 📱 Mobile app integration.
+* 🎵 Sound alerts (beep/alarm).
+* 🌐 Cloud-based monitoring dashboard.
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
 
 
-Alert – If the baby leaves the predefined safety zone, a sound alert is triggered.
-
-
-
-📜 License
-This project is released under the MIT License.
 
