@@ -1,0 +1,137 @@
+#ultralytics: to use YOLOv5 object detection.opencv-python-headless: to process images/videos without GUI (used in servers and Colab).
+
+!pip install ultralytics opencv-python-headless
+#Changes the working directory to /content, which is the main folder in Google Colab.
+%cd /content
+
+!curl -L "https://universe.roboflow.com/ds/pIY93A0wDl?key=FNlzFcGZsL" > roboflow.zip
+!unzip roboflow.zip
+#Downloads your labeled baby detection dataset from Roboflow and unzips it.
+
+with open("baby_data.yaml", "w") as f:
+    f.write("""
+train: /content/train/images
+val: /content/valid/images
+
+nc: 1
+names: ['baby']
+""")
+#yaml - classes,path,class label
+#Creates a config file called baby_data.yaml:
+
+#train: path to training images
+
+#val: path to validation images
+
+#nc: number of classes (only 1 class — "baby")
+
+#names: the class name
+
+%cd /content
+!git clone https://github.com/ultralytics/yolov5
+%cd yolov5
+!pip install -r requirements.txt
+
+#Clones the YOLOv5 GitHub repo and installs its dependencies.
+
+!python train.py --img 320 --batch 8 --epochs 10 --data /content/baby_data.yaml --weights yolov5s.pt --cache
+#img 320: image size
+
+#batch 8: how many images are processed at once
+
+#epochs 10: train the model for 10 cycles
+
+#data: your config file
+
+#weights yolov5s.pt: starting from the pre-trained "small" YOLOv5 model
+
+#cache: speeds up training
+
+import cv2
+import os
+#cv2: OpenCV library for reading and writing images and videos.os: Used to interact with the file system (e.g., list image files in a folder).
+
+image_folder = '/content/train/images'  # path to your dataset images
+video_name = 'baby_dataset_video.mp4'
+
+images = sorted([img for img in os.listdir(image_folder) if img.endswith(".jpg")]) #Lists all image files ending with .jpg in the folder.sorted() ensures the images are in proper order (e.g., frame1.jpg, frame2.jpg...).
+
+frame = cv2.imread(os.path.join(image_folder, images[0]))
+height, width, layers = frame.shape
+
+video = cv2.VideoWriter(video_name, cv2.VideoWriter_fourcc(*'mp4v'), 5, (width, height))
+
+for image in images:
+    img_path = os.path.join(image_folder, image)
+    frame = cv2.imread(img_path)
+    video.write(frame)
+
+    #Loops through every .jpg image in the folder.Reads the image using cv2.imread().Writes the image as a frame in the video using video.write().
+
+video.release()
+print("Video created successfully!")
+
+import torch
+import cv2
+import numpy as np
+
+# Load your trained YOLOv5 model
+model = torch.hub.load('ultralytics/yolov5', 'custom', path='runs/train/exp/weights/best.pt', force_reload=True)
+
+# Set model confidence threshold (optional)
+model.conf = 0.4
+
+# Safe zone rectangle (x1, y1, x2, y2) — update this if needed
+SAFE_ZONE = (100, 100, 500, 400)
+
+# Open the video created from images
+cap = cv2.VideoCapture('baby_dataset_video.mp4')
+width = int(cap.get(3))
+height = int(cap.get(4))
+fps = cap.get(cv2.CAP_PROP_FPS)
+
+# Save the output video
+out = cv2.VideoWriter('output_with_alert.mp4', cv2.VideoWriter_fourcc(*'mp4v'), fps, (width, height))
+
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        break
+#Reads frame-by-frame from the video.ret becomes False when video ends.
+
+
+    results = model(frame)
+    detections = results.pandas().xyxy[0]
+
+    # Draw safe zone
+    cv2.rectangle(frame, (SAFE_ZONE[0], SAFE_ZONE[1]), (SAFE_ZONE[2], SAFE_ZONE[3]), (0, 255, 0), 2)
+
+    alert = False
+
+    for _, row in detections.iterrows():
+        if row['name'] == 'baby':
+            x1, y1, x2, y2 = int(row['xmin']), int(row['ymin']), int(row['xmax']), int(row['ymax'])
+            cx, cy = (x1 + x2) // 2, (y1 + y2) // 2  # center of baby box
+
+            # Draw baby box Draws a blue box around the baby.Places a red dot at the center of the baby.
+            cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
+            cv2.circle(frame, (cx, cy), 5, (0, 0, 255), -1)
+
+            # Check if baby is outside the safe zone
+            if not (SAFE_ZONE[0] < cx < SAFE_ZONE[2] and SAFE_ZONE[1] < cy < SAFE_ZONE[3]):
+                alert = True
+
+    if alert:
+        cv2.putText(frame, '⚠️ BABY OUT OF SAFE ZONE!', (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3)
+
+#Writes the current frame (with alert box or message) to the output video.
+    out.write(frame)
+
+#Releases the video reader and writer.Prints a confirmation that the process is done.
+
+cap.release()
+out.release()
+print("✅ Baby tracking with alert complete. Video saved as 'output_with_alert.mp4'")
+
+from google.colab import files
+files.download('output_with_alert.mp4')
