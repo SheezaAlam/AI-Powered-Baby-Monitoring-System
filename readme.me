@@ -1,0 +1,121 @@
+
+# AngelCam – AI-Powered Baby Monitoring System
+
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python)](https://www.python.org/)
+[![YOLOv5](https://img.shields.io/badge/YOLOv5-Object%20Detection-green)](https://github.com/ultralytics/yolov5)
+[![Roboflow Dataset](https://img.shields.io/badge/Dataset-Roboflow-orange)](https://roboflow.com/)
+[![Google Colab](https://img.shields.io/badge/Colab-GPU%20Ready-yellow)](https://colab.research.google.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
+
+---
+
+## Overview
+AngelCam is an **AI-powered vision system** for real-time baby monitoring.  
+It applies **object detection and tracking** to identify when a baby is within a user-defined safety region.  
+If the baby leaves the safe zone, the system **raises an alert** for immediate response.
+
+This repository is intended for:
+- Students and developers exploring **computer vision** with YOLOv5
+- Parents or caregivers seeking **customizable, software-based monitoring**
+- Researchers prototyping **intelligent surveillance tools**
+
+---
+
+## Key Features
+- **Real-Time Baby Detection** – Detects infants in webcam or recorded video streams.
+- **Custom Safety Zone** – Define an area of interest; alerts trigger if breached.
+- **Detection & Tracking** – Maintains a record of bounding boxes and movement.
+- **Colab-Friendly** – Fully runnable in **Google Colab** with GPU acceleration.
+
+---
+
+## Technology Stack
+| Component    | Details                                  |
+|--------------|-------------------------------------------|
+| Language     | Python 3.9+                               |
+| Model        | YOLOv5 (Ultralytics)                      |
+| Dataset      | Roboflow Baby Detection Dataset           |
+| Runtime      | Google Colab / Jupyter Notebook (GPU)     |
+| Dependencies | `torch`, `opencv-python`, `numpy`, `matplotlib`, `yolov5` |
+
+---
+
+## System Workflow
+1. **Load Pretrained YOLOv5 Weights** – Trained on Roboflow baby dataset.  
+2. **Video Stream** – Webcam feed or recorded MP4/AVI file.  
+3. **Detection & Tracking** – Bounding boxes, object IDs, frame-by-frame state.  
+4. **Safe Zone Check** – Compares baby location with the user-defined polygon/rectangle.  
+5. **Trigger Alert** – Prints, logs, or emits an event when the baby leaves the safe zone.
+
+---
+
+## Setup & Usage
+
+### Clone and Install
+```bash
+git clone https://github.com/yourusername/angelcam.git
+cd angelcam
+pip install -r requirements.txt
+````
+
+### Launch in Colab
+
+Upload the notebook and enable **GPU runtime**:
+
+```
+Runtime > Change runtime type > Hardware accelerator > GPU
+```
+
+### Run Detection
+
+```python
+python detect_baby.py --weights best.pt --source 0
+```
+
+* `--source 0` → Webcam
+* `--source video.mp4` → Video file
+
+---
+
+## Use Cases
+
+* Home monitoring for parents or caregivers
+* Hospitals, NICU rooms, and daycare facilities
+* Prototype for **smart nanny cameras** or **IoT baby monitoring systems**
+
+---
+
+## Future Roadmap
+
+* Audio integration (cry detection, sound alerts)
+* Mobile-friendly UI for real-time notifications
+* Safe-zone configuration via GUI
+* Multi-camera support
+
+---
+
+## Contributing
+
+Contributions, bug reports, and feature requests are welcome.
+Fork the repository and open a pull request with clear commit messages.
+
+---
+
+## License
+
+Distributed under the **MIT License** – see [LICENSE](LICENSE) for details.
+
+---
+
+## References
+
+* [Ultralytics YOLOv5 Documentation](https://docs.ultralytics.com/)
+* [Roboflow Dataset Hosting](https://roboflow.com/)
+* [OpenCV Python](https://opencv.org/)
+
+```
+
+---
+
+Would you also like me to draft **folder structure + example notebooks** (so the repo looks “ready-to-run” for Colab users)? That makes it much more professional when someone visits your GitHub.
+```
