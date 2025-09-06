@@ -1,4 +1,3 @@
-
 # AngelCam – AI-Powered Baby Monitoring System
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python)](https://www.python.org/)
@@ -115,7 +114,3 @@ Distributed under the **MIT License** – see [LICENSE](LICENSE) for details.
 
 ```
 
----
-
-Would you also like me to draft **folder structure + example notebooks** (so the repo looks “ready-to-run” for Colab users)? That makes it much more professional when someone visits your GitHub.
-```
